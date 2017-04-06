@@ -4,8 +4,8 @@
 var geocoder = new google.maps.Geocoder();
 
 function getPosition(userId) {
-    var cookieValue = document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + 'userLocated'+userId + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1");
-    if (!cookieValue) {
+    // var cookieValue = document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + 'userLocated'+userId + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1");
+    // if (!cookieValue) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -26,13 +26,13 @@ function getPosition(userId) {
                 }
             );
         }
-    }
+    // }
 }
 
 function sendLocalization(userId, localization) {
     $.post(currentLocalUrl, {localization: localization}, function (response) {
         if (response.success) {
-            document.cookie = 'userLocated'+userId+'=true;max-age='+86400+';';
+            // document.cookie = 'userLocated'+userId+'=true;max-age='+86400+';';
         }
     });
 }

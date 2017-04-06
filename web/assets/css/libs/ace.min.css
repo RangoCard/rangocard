@@ -722,6 +722,9 @@ h1, h2, h3, h4, h5, h6 {
         font-size:17px;
         padding:10px;
     }
+    .icon-info-promo{
+        font-size:42px;
+    }
 }
 @media only screen and (max-width:315px){
     .user-noti {

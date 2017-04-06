@@ -624,6 +624,9 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 @media only screen and (max-width:992px){
+    .bg-topo{
+        padding-bottom:10px;
+    }
     .logo-rango.logo-rango-login {
         margin:30px auto;
     }
@@ -1815,7 +1818,8 @@ pre.prettyprint {
     max-width: 40px;
 }
 .nav-user-photo{
-  border-radius:100%;  
+  border-radius:100%;
+  background-size:cover !important;
 }
 .ace-nav li.dropdown-footer a .ace-icon {
     display: inline-block;

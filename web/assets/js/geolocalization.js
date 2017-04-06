@@ -23,6 +23,7 @@ function getPosition(userId) {
                     });
                 },
                 function (failure) {
+                    console.log(failure.code+': '+failure.message);
                 }
             );
         } else {

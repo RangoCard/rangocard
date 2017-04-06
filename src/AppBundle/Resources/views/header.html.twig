@@ -10,7 +10,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-header navbar-img pull-left">
-                        <div class="nav-user-photo pull-left" style="background: url({{  app.user.picSrc ? asset(app.user.picSrc)|imagine_filter('profile_pic') : asset('assets/images/avatars/avatar.png') }});height: 50px;width: 50px;"></div>
+                        <div class="nav-user-photo pull-left" style="background: url({{  app.user.picSrc ? asset(app.user.picSrc)|imagine_filter('profile_pic') : asset('assets/images/avatars/no-user.png') }});height: 50px;width: 50px;"></div>
                         <small class="navbar-brand">
                             {{ app.user.name }}
                         </small>

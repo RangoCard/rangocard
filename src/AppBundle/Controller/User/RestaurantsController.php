@@ -22,7 +22,10 @@ class RestaurantsController extends AbstractController
     public function indexAction()
     {
         $em = $this->getDoctrineManager();
-        $restaurants = $em->getRepository('AppBundle:Restaurant')->findRestaurantsByCity($this->getUser()->getCity());
+        $restaurants = [];
+        if ($this->getUser()->getCity()) {
+            $restaurants = $em->getRepository('AppBundle:Restaurant')->findRestaurantsByCity($this->getUser()->getCity());
+        }
 
         return $this->render('@App/User/Restaurants/index.html.twig', [
             'restaurants'   => $restaurants

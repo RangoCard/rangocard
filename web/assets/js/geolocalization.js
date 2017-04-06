@@ -25,6 +25,8 @@ function getPosition(userId) {
                 function (failure) {
                 }
             );
+        } else {
+            console.log('geolocation: not allowed');
         }
     // }
 }

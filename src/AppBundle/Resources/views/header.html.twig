@@ -46,12 +46,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a onclick="getPosition({{ app.user.id }})">
-                                    <i class="icons-top no-hover fa fa-map-marker"></i>
-                                    Localização
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ isRestaurant() ? path('logout_restaurant') : path('logout_user') }}"><i class="icons-top no-hover icon-sair"></i>
                                     Sair
                                 </a>

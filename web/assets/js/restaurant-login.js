@@ -28,7 +28,7 @@ $(function () {
             typingTimer = setTimeout(function(){
                 $.ajax({
                     dataType : 'json',
-                    url: 'http://apps.widenet.com.br/busca-cep/api/cep.json?code='+inputCep.val(),
+                    url: 'https://apps.widenet.com.br/busca-cep/api/cep.json?code='+inputCep.val(),
                     beforeSend: function() {
                         $('#loadingCep').show();
                     },

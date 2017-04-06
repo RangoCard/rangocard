@@ -1,0 +1,26 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: mysql796.umbler.com
+    database_port: ~
+    database_name: rangocard_db
+    database_user: rangocard_usr
+    database_password: oV*I*6nv8,{P
+    # You should uncomment this if you want to use pdo_sqlite
+    #database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport: smtp
+    mailer_host: smtp.umbler.com
+    mailer_user: contato@rangocard.com.br
+    mailer_password: rango123@
+    mailer_port: 587
+    mailer_encryption: tls
+    mailer_from: contato@rangocard.com.br
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: ThisTokenIsNotSoSecretChangeIt
+
+    restaurant_profile_dir: 'assets/images/restaurants/'
+    user_profile_dir: assets/images/users/
+    web_root: %kernel.root_dir%/../public

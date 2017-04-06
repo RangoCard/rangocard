@@ -1,0 +1,70 @@
+{% extends '@App/base.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <div id="userRegister" class="col-xs-12 col-edit-cadastro">
+        <span class="profile-picture">
+            <img id="fileSrc" class="img-responsive" alt="Foto Upload" src="{{ asset('assets/images/avatars/default_avatar.png') }}" style="height: 140px" />
+        </span>
+        <form name="formUserReg" id="formUserReg" action="{{ path('user_register_email', {email: email, restaurant: restaurant, sale: sale}) }}" method="post" class="edit-cadastro">
+            <input type="hidden" id="picture-src" name="picture-src" class="picture-src">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nome" required>
+            </div>
+            <div class="form-group label-menor p0">
+                <label>CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" data-mask="999.999.999-99" required>
+            </div>
+            <div class="form-group label-menor p0">
+                <label>Senha</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+            </div>
+            <div class="form-group label-menor p0">
+                <label>Data nascimento</label>
+                <input type="text" class="form-control datetime-picker" id="birth" name="birth" data-time-format="dd-mm-yyyy" placeholder="Data nascimento">
+            </div>
+            <div class="form-group label-menor p0">
+                <label>Telefone:</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" data-mask="(99) 99999-9999">
+            </div>
+            {#<div class="form-group label-menor p0">
+                <label>CEP:</label>
+                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" data-mask="99999-999">
+            </div>
+            <div class="form-group label-menor p0">
+                <label>Cidade:</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Cidade">
+            </div>
+            <div class="form-group label-menor p0">
+                <label>Estado:</label>
+                <input type="text" class="form-control" id="state" name="state" placeholder="Estado" maxlength="2">
+            </div>
+            <div class="form-group label-menor p0">
+                <label>Rua:</label>
+                <input type="text" class="form-control" id="street" name="street" placeholder="Rua">
+            </div>
+            <div class="form-group label-menor p0">
+                <label>Bairro:</label>
+                <input type="text" class="form-control" id="district" name="district" placeholder="Bairro">
+            </div>#}
+            <button type="submit" class="btn btn-success pull-right">Salvar</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block customjavascripts %}
+    <script type="text/javascript">
+        var fileUploadUrl = '{{ path('file_upload', {type: 'user'}) }}';
+    </script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/moment-ptbr.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/bootstrap-datetimepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/x-editable/bootstrap-editable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/x-editable/ace-editable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/profile-avatar-update.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/jquery.maskedinput.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/user-register-email.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <form id="formContact" class="edit-cadastro col-edit-cadastro col-xs-12 col-sm-8" name="formContact" action="{{ isRestaurant() ? path('restaurant_contact') : path('user_contact') }}" method="post">
+                    <div class="form-group col-xs-12">
+                        <label for="name">Nome*:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="email">E-mail*:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="phone">Telefone:</label>
+                        <input type="text" id="phone" name="phone" class="form-control" data-mask="(99) 99999-9999">
+                    </div>
+                    <div class="form-group last-form-group col-xs-12">
+                        <label for="message">Mensagem*:</label>
+                        <textarea name="message" id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </form>
+            </div>
+        </div>
+        {% include '@App/footer.html.twig' %}
+    </div>
+{% endblock %}
+
+{% block customjavascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/libs/jquery.maskedinput.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/contact.js') }}"></script>
+{% endblock %}

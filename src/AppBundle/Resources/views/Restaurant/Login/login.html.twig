@@ -1,0 +1,116 @@
+{% extends '@App/base.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+         <div class="col-xs-12">
+            <img class="logo-rango logo-rango-login" src="{{asset('assets/images/logo-rangocard.png') }}" alt="Logo Rangocard" />
+            <form name="formLogin" id="formLogin" class="form-login-rango col-edit-cadastro pull-left col-sm-4 col-xs-12" action="{{ path('login_restaurant') }}" method="post">
+                <p>Faça login</p>
+                <div class="form-group col-xs-12 p0">
+                    <label class="col-xs-12 control-label" for="email">E-mail</label>
+                    <div class="col-xs-12">
+                        <input type="email" class="form-control" name="_username" id="email" required value="{{ last_username }}" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 p0 last-form-group">
+                    <label class="col-xs-12 control-label" for="password">Senha</label>
+                    <div class="col-xs-12">
+                        <input type="password" class="form-control" name="_password" id="password" required>
+                    </div>
+                </div>
+                <div class="form-group pull-left col-xs-12">
+                    {% if error %}
+                        <div class="error-login">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <button type="submit" class="btn-token btn-login">Entrar</button>
+                </div>
+                <!--<a id="abre-cadastro-rest" href="#" class="btn">Novo cadastro</a>-->
+            </form>
+            <div id="cadast-rest" class="col-xs-12 col-sm-7 form-login-rango col-edit-cadastro pull-right">
+                <div class="col-xs-12">
+                    <p>Cadastre-se</p>
+                </div>
+                <span class="profile-picture">
+                    <img id="fileSrc" class="img-responsive img-circle" alt="Foto Upload" src="{{ asset('assets/images/avatars/default_avatar.png') }}" style="height: 140px" />
+                </span>
+                <form name="formRestReg" id="formRestReg" action="{{ path('restaurant_register') }}" method="post" class="form-login-rango edit-cadastro">
+                    <input type="hidden" id="picture-src" name="picture-src" class="picture-src">
+                    <div class="col-md-9 col-xs-12 pull-right p0">
+                        <div class="form-group col-xs-12">
+                            <label>Nome:</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nome" required>
+                        </div>
+                        <div class="form-group col-sm-6 col-xs-12">
+                            <label>CNPJ:</label>
+                            <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" data-mask="99.999.999/9999-99" required>
+                        </div>
+                        <div class="form-group col-sm-6 col-xs-12">
+                            <label>Nome Fantasia:</label>
+                            <input type="text" class="form-control" id="fantasyName" name="fantasyName" placeholder="Nome Fantasia">
+                        </div>
+                        <div class="form-group col-sm-6 col-xs-12">
+                            <label>E-mail:</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group col-sm-6 col-xs-12">
+                            <label>Senha:</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Site:</label>
+                        <input type="text" class="form-control" id="site" name="site" placeholder="Site">
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Telefone:</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" data-mask="(99) 99999-9999">
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>WhatsApp:</label>
+                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="Whatsapp" data-mask="(99) 99999-9999">
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>CEP:</label>
+                        <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" data-mask="99999-999">
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Cidade:</label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="Cidade">
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Estado:</label>
+                        <input type="text" class="form-control" id="state" name="state" placeholder="Estado">
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Rua:</label>
+                        <input type="text" class="form-control" id="street" name="street" placeholder="Rua">
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Bairro:</label>
+                        <input type="text" class="form-control" id="district" name="district" placeholder="Bairro">
+                    </div>
+                    <div class="form-group col-xs-12 last-form-group">
+                        <label for="description">Descrição:</label>
+                        <textarea class="form-control" name="description" id="description"></textarea>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-success">Cadastrar</button>   
+                    </div>
+                </form>
+            </div>
+{% endblock %}
+
+{% block customjavascripts %}
+    <script type="text/javascript">
+        var fileUploadUrl = '{{ path('file_upload', {type: 'restaurant'}) }}';
+    </script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/x-editable/bootstrap-editable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/x-editable/ace-editable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/profile-avatar-update.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/libs/jquery.maskedinput.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/restaurant-login.js') }}"></script>
+{% endblock %}

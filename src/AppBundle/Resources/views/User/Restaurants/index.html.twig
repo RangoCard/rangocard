@@ -1,0 +1,86 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body_attrs 'class="no-skin"' %}
+
+{% block content %}
+    <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+            try{ace.settings.loadState('main-container')}catch(e){}
+        </script>
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="page-content container">
+                    <div class="page-header">
+                        <h1>
+                            Restaurantes participantes
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                {% for restaurant in restaurants %}
+                                    <div class="bg-thumbnail-list-rest col-xs-6 col-sm-4 col-md-3">
+                                        <div class="thumbnail search-thumbnail thumbnail-list-rest">
+                                            <img class="media-object" src="{{ restaurant.picSrc ? restaurant.picSrc | imagine_filter('user_restaurants_list') }}" data-src="holder.js/100px200?theme=gray"/>
+                                            <div class="caption">
+                                                <div class="avaliacao">
+                                                    <div class="form-group">
+                                                        <div class="rating inline"></div>
+                                                    </div>
+                                                </div>
+                                                <h3 class="search-title">
+                                                    <a data-id="{{ restaurant.id }}" href="#" role="button" class="openRestData">{{ restaurant.fantasyName }}</a>
+                                                </h3>
+                                                <p>{{ restaurant.description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include '@App/footer.html.twig' %}
+    </div>
+    <div id="modal-dados-rest" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="restDataName" class="bigger">Nome Restaurante</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul>
+                                <li id="restDataPhone">
+                                </li>
+                                <li id="restDataWhats">
+                                </li>
+                                <li id="restDataSite">
+                                </li>
+                                <li id="restDataAddress">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customjavascripts %}
+    <script type="text/javascript">
+        var restDataUrl = '{{ path('user_fetch_rest_data') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset('assets/js/user-restaurants_list.js') }}"></script>
+{% endblock %}

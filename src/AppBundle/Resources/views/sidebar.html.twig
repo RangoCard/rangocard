@@ -1,0 +1,54 @@
+<div id="sidebar" class="sidebar responsive ace-save-state compact">
+    <script type="text/javascript">
+        try {
+            ace.settings.loadState('sidebar')
+        } catch (e) {
+        }
+    </script>
+    <ul class="nav nav-list">
+        <li class="{{ route == 'restaurant_home' or route == 'user_home' ? 'active' }}">
+            <a href="{{ isRestaurant() ? path('restaurant_home') : path('user_home') }}">
+                <i class="menu-icon fa fa-cutlery"></i>
+                <span class="menu-text">Home</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        {#<li class="{{ route == 'restaurant_seals' or route == 'user_seals' ? 'active' }}">
+            <a href="{{ isRestaurant() ? path('restaurant_seals') : path('user_seals') }}">
+                <i class="menu-icon fa fa-ticket"></i>
+                <span class="menu-text">
+                    Selos
+                </span>
+                <b class="arrow fa fa-ticket"></b>
+            </a>
+            <b class="arrow"></b>
+        </li>#}
+        <li class="{{ route == 'restaurant_profile' or route == 'user_profile' ? 'active' }}">
+            <a href="{{ isRestaurant() ? path('restaurant_profile') : path('user_profile') }}">
+                <i class="menu-icon fa fa-user"></i>
+                <span class="menu-text">
+                    Perfil
+                </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        {% if isRestaurant() %}
+            <li class="">
+                <a href="promocao.php">
+                    <i class="menu-icon fa fa-money"></i>
+                    <span class="menu-text">
+                        Promoção
+                    </span>
+                </a>
+            </li>
+            <li class="">
+                <a href="lista-promocao.php">
+                    <i class="menu-icon fa fa-money"></i>
+                    <span class="menu-text">
+                        Lista promoção
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

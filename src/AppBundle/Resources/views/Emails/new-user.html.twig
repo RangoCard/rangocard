@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <p>Você ganhou um selo na promoção {{ sale.name }}, cadastre-se em <a href="{{ url('user_register_email', {email: email, restaurant: restaurant.id, sale: sale.id}) }}">{{ url('user_register_email', {email: email, restaurant: restaurant.id, sale: sale.id}) }}</a></p>
+</body>
+</html>

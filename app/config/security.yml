@@ -1,0 +1,83 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:
+        entity_restaurant:
+            class: AppBundle\Entity\Restaurant
+            algorithm: sha512
+        entity_user:
+            class: AppBundle\Entity\User
+            algorithm: sha512
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        entity_restaurant:
+            entity:
+                class: AppBundle:Restaurant
+                property: email
+        entity_user:
+            entity:
+                class: AppBundle:User
+                property: email
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        restaurant_area:
+            pattern: ^/restaurante
+            provider: entity_restaurant
+            anonymous:  ~
+            form_login:
+                check_path: login_restaurant
+                login_path: login_restaurant
+
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path:            /restaurante
+                target_path_parameter:          _target_path
+                use_referer:                    false
+
+            logout:
+                path: logout_restaurant
+                target: login_restaurant
+                invalidate_session: false
+        user_area:
+            pattern: ^/usuario
+            provider: entity_user
+            anonymous:  ~
+            form_login:
+                check_path: login_user
+                login_path: login_user
+
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path:            /usuario
+                target_path_parameter:          _target_path
+                use_referer:                    false
+
+            logout:
+                path: logout_user
+                target: login_user
+                invalidate_session: false
+            # activate different ways to authenticate
+
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            #form_login: ~
+
+    access_control:
+        - { path: ^/usuario/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/cadastro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/cadastro-email, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/restaurante/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/restaurante/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/restaurante/cadastro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario, roles: [ROLE_USER] }
+        - { path: ^/restaurante, roles: [ROLE_RESTAURANT] }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

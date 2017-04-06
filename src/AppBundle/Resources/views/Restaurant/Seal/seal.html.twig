@@ -1,0 +1,157 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body_attrs 'class="no-skin"' %}
+
+{% block content %}
+    <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+            try{ace.settings.loadState('main-container')}catch(e){}
+        </script>
+        
+        <div class="main-content">
+            <div class="main-content-inner">
+                {% include '@App/breadcrumbs.html.twig' with {currentPage: 'Selos'} %}
+                <div class="page-content">
+                    <div class="page-header">
+                        <h1>
+                            Selos
+                            <small>
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                                lista de selos
+                            </small>
+                        </h1>
+                        <a href="#modal-token" role="button" data-toggle="modal" class="btn-token pull-right">
+                            <span class="btn btn-success no-border">
+                                <span class="bigger-110">Inserir Código</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <table id="simple-table" class="table  table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Restaurante</th>
+                                            <th>Data</th>
+                                            <th>Status</th>
+                                            <th>Qtde Selos</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Nome Restaurante</td>
+                                            <td>13/03/2017</td>
+                                            <td><span class="label label-sm label-success">Validado</span></td>
+                                            <td>
+                                                <div class="btn-group btn-group-selo">
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <span class="label label-sm label-success label-completo">Completo</span>
+                                                </div>
+                                                <div class="btn-group btn-group-selo">
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <span class="label label-sm label-warning label-completo">Faltam 7</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nome Restaurante</td>
+                                            <td>13/03/2017</td>
+                                            <td><span class="label label-sm label-danger">Erro</span></td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <button class="btn btn-xs btn-default">
+                                                        <i class="ace-icon fa fa-ticket bigger-120"></i>
+                                                    </button>
+                                                    <span class="label label-sm label-warning label-completo">Faltam 6</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-token" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="blue bigger">Insira seu código para validar seu selo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Código">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit"><i class="ace-icon fa fa-check"></i>
+                                        Validar
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

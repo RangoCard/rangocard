@@ -1,0 +1,201 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+    {#<a href="{{ path('user_edit') }}">Editar cadastro</a>
+    <a href="{{ path('logout_restaurant') }}">Sair</a>
+    <button id="newToken" name="newToken" type="button">Novo Token</button>
+    <div id="generatedToken"></div>#}
+    <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) {
+            }
+        </script>
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="page-content">
+                    <div class="page-header">
+                        <h1>
+                            Promoções
+                        </h1>
+                        <a href="#modal-gera-token" role="button" data-toggle="modal" class="btn-token pull-right">
+                            Gerar Selo
+                        </a>
+                        <a href="{{ path('restaurant_sale_form') }}" class="btn-nova-promo btn-token pull-right">
+                            Nova Promoção
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="table-responsive">
+                                        <table id="simple-table" class="table  table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Promoção</th>
+                                                <th>Data inicio</th>
+                                                <th>Data fim</th>
+                                                <th>Status</th>
+                                                <th>Qtde Selos gerados</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for sale in sales %}
+                                                <tr id="sale-{{ sale.id }}">
+                                                    <td>{{ sale.name }}</td>
+                                                    <td>{{ sale.startDate|date('d/m/Y H:i') }}</td>
+                                                    <td>{{ sale.endDate|date('d/m/Y H:i') }}</td>
+                                                    <td>
+                                                        {% if sale.endDate|date('Y-m-d H:i:s') > 'now'|date('Y-m-d H:i:s') %}
+                                                            <span class="label label-sm label-success">Ativo</span>
+                                                        {% else %}
+                                                            <span class="label label-sm label-danger">Expirado</span>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        <a href="#saleUsers-{{ sale.id }}" role="button" data-toggle="modal">
+                                                            {% if sale.users|length > 0 %}
+                                                                {{ sale.numSeals }} {{ sale.numSeals == 1 ? 'selo' : 'selos' }}
+                                                            {% else %}
+                                                                0 selos
+                                                            {% endif %}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn-table" href="{{ path('restaurant_sale_form', {id: sale.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                        <a class="btnDeleteSale btn-table" data-id="{{ sale.id }}" href="{{ path('restaurant_sale_delete', {id: sale.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include '@App/footer.html.twig' %}
+    </div>
+    <div id="modal-gera-token" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="bigger">Gerar selo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form id="formTokenGenerate" name="formTokenGenerate" action="{{ path('restaurant_generate_token') }}" method="post">
+                                <div class="input-group">
+                                    <input type="email" id="emailTokenGenerate" name="email" class="form-control" placeholder="E-mail" required>
+                                    <span class="input-group-btn">
+                                        <button id="btnTokenGenerate" class="btn btn-success" type="submit"><i class="ace-icon fa fa-check"></i>
+                                            Gerar
+                                        </button>
+                                    </span>
+                                </div>
+                                <div class="form-group">   
+                                    <select id="saleTokenGenerate" class="col-xs-12" name="sale" required>
+                                        {% for sale in sales if sale.endDate|date('Y-m-d H:i:s') >= 'now'|date('Y-m-d H:i:s') %}
+                                            <option value="{{ sale.id }}">{{ sale.name }}</option>
+                                        {% endfor %}
+                                    </select> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for sale in sales %}
+        <div id="saleUsers-{{ sale.id }}" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="bigger">Códigos gerados por usuário</h4>
+                    </div>
+                    <div class="modal-body no-padding">
+                        <form name="formSearchUser" action="{{ path('restaurant_search_user') }}" method="post">
+                            <div class="form-group">
+                                <label>
+                                    Buscar:
+                                    <input type="search" name="searchUser" data-sale="{{ sale.id }}" class="form-control searchUser">
+                                </label>
+                            </div>
+                        </form>
+                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                            <thead>
+                                <tr>
+                                    <th>Usuário</th>
+                                    <th>Data</th>
+                                    <th>Qtde selos</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyUsers-{{ sale.id }}">
+                            {% for user in sale.users %}
+                                <tr>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.createdAt|date('d/m/Y H:i') }}</td>
+                                    <td>{{ user.numSeals }}</td>
+                                    <td>
+                                        {% if user.numSeals >= sale.sealLimit %}
+                                            <a class="btn-token clearUserSeals pull-right" data-id="{{ user.id }}" data-sale="{{ sale.id }}" href="#">Zerar selos</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        {#<ul class="pagination no-margin">
+                            <li class="prev disabled">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li class="next">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        </ul>#}
+                        <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                            <i class="ace-icon fa fa-times"></i>
+                            Fechar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block customjavascripts %}
+    <script type="text/javascript">
+        var urlClearUserSeals = '{{ path('restaurant_clear_user_seals') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset('assets/js/restaurant-home.js') }}"></script>
+{% endblock %}

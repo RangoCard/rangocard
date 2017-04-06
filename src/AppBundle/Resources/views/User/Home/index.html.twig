@@ -1,0 +1,164 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body_attrs 'class="no-skin"' %}
+
+{% block content %}
+    <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) {
+            }
+        </script>
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-lg-8 content-rest">
+                            <div class="row">
+                                {% if restaurants|length > 0 %}
+                                    {% for restaurant in restaurants %}
+                                        <div class="col-xs-12">
+                                            <div class="thumbnail thumbnail-user-pontos search-thumbnail col-xs-12">
+                                                <div class="col-xs-12 info-rest p0">
+                                                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                                                        {% if restaurant.picSrc %}
+                                                            <div class="nav-user-photo pull-left" style="background: url({{ asset(restaurant.picSrc) | imagine_filter('restaurant_home_list') }});height: 50px;width: 50px;"></div>
+                                                        {% endif %}
+                                                        <h3 class="search-title">
+                                                            <a href="#" role="button" data-toggle="modal" class="openRestData" data-id="{{ restaurant.id }}">{{ restaurant.name }}</a>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-4 p0 pull-right info-selos">
+                                                        <div class="col-xs-4 col-sm-4 user-noti">
+                                                            {% if restaurant.sales %}
+                                                                <i class="icons-top no-hover icon-selo"></i>
+                                                                <span class="badge-promo badge badge-important">{{ restaurant.numSeals }}</span>
+                                                                 {{ restaurant.numSeals == 1 ? 'SELO' : 'SELOS' }}
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-xs-4 col-sm-4 user-noti user-noti-promo">
+                                                            {% if restaurant.sales %}
+                                                                <i class="icons-top no-hover icon-oferta"></i>
+                                                                <span class="badge-promo badge badge-important">{{ restaurant.numSales }}</span>
+                                                                 PROMO
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-xs-4 col-sm-4 user-noti user-noti-recompensa">
+                                                            {% if restaurant.sales %}
+                                                                <i class="icons-top no-hover icon-recompensa"></i>
+                                                                <span class="badge-promo badge badge-important">{{ restaurant.numRewards }}</span>
+                                                                 {{ restaurant.numRewards == 1 ? 'RECOMPENSA' : 'RECOMPENSAS' }}
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if restaurant.sales %}
+                                                    <div class="caption caption-rest col-xs-12 col-sm-8">
+                                                        <p>Você está participando da:</p>
+                                                        {% for sale in restaurant.sales %}
+                                                            <div class="col-xs-12 info-promo {% if sale.sealsLeft == 0 %}info-promo-finish{% endif %}">
+                                                                <h4>{{ sale.name }}</h4>
+                                                                <span class="desc-info-promo">{{ sale.description }}</span>
+                                                                <div class="col-xs-8 sale-info-promo">
+                                                                    <i class="icon-info-promo icon-selo"><span>{{ sale.sealLimit }}</span></i>
+                                                                    {% if sale.sealsLeft == 0 %}
+                                                                        <p>Parabéns você completou a promoção,<br>venha buscar sua recompensa!</p>
+                                                                    {% else %}
+                                                                        <p>Você tem <strong>{{ sale.numSeals }} {{ sale.numSeals == 1 ? 'selo' : 'selos' }}</strong><br>
+                                                                            {{ sale.sealsLeft == 1 ? 'falta' : 'faltam' }} <span>{{ sale.sealsLeft }}</span> {{ sale.sealsLeft == 1 ? 'selo' : 'selos' }}</p>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="col-xs-12">
+                                        <h3 class="msg-sem-promo">Você não está participando de nenhuma promoção no momento, <a href ="{{ path('user_restaurants_list') }}">clique aqui</a> e veja a lista de restaurantes participantes e começe a participar!</h3>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include '@App/footer.html.twig' %}
+    </div>
+    <div id="modal-token" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="blue bigger">Insira seu código para validar seu selo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Código">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit"><i class="ace-icon fa fa-check"></i>
+                                            Validar
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-dados-rest" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="restDataName" class="blue bigger">Nome Restaurante</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul>
+                                <li id="restDataPhone">
+                                </li>
+                                <li id="restDataWhats">
+                                </li>
+                                <li id="restDataSite">
+                                </li>
+                                <li id="restDataAddress">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customjavascripts %}
+    <script type="text/javascript">
+        var restDataUrl = '{{ path('user_fetch_rest_data') }}';
+        var loggedUserId = '{{ app.user.id }}';
+    </script>
+    <script type="text/javascript" src="{{ asset('assets/js/user-home.js') }}"></script>
+{% endblock %}

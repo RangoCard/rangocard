@@ -372,6 +372,7 @@ h1, h2, h3, h4, h5, h6 {
     height:55px;
     border-radius:100%;
     margin:5px 15px 0 0;
+    background-size:cover !important;
 }
 .info-rest .search-title a{
     font-size:22px;
@@ -1644,6 +1645,7 @@ pre.prettyprint {
     text-transform:uppercase;
     font-family: 'Palanquin', sans-serif;
     font-weight:500;
+    cursor:pointer;
 }
 .bg-topo .ace-nav>li>a:hover,
 .bg-topo .ace-nav>li>a.active{
@@ -12624,7 +12626,7 @@ ul.attachment-list>li {
     border-color:#FF5D00;
 }
 .search-thumbnail .search-title {
-    margin-top: 20px;
+    margin-top: 16px;
 } 
 .thumbnail-list-rest .search-title a{
     color:#FF5D00;

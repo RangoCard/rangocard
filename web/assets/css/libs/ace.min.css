@@ -33,6 +33,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Palanquin', sans-serif;
 }
+input {
+    -webkit-appearance: none !important;
+}
 /*.main-container:before {
     display: block;
     content: "";
@@ -719,7 +722,7 @@ h1, h2, h3, h4, h5, h6 {
         font-size:13px;
     }
     .bt-entrar{
-        font-size:17px;
+        font-size:15px;
         padding:10px;
     }
     .icon-info-promo{

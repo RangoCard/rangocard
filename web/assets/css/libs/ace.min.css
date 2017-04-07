@@ -75,6 +75,9 @@ input {
     margin:0 auto;
     z-index: 99999;
 }
+#btnConfirmDeleteSale {
+    border-color: #337ab7 !important;
+}
 /**** INDEX PRINCIPAL ***/
 .bg-topo-home{
     width:100%;

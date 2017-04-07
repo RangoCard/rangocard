@@ -69,7 +69,7 @@ $(function () {
                             <p>Deseja deletar a promoção?</p>\
                         </div>\
                         <div class="modal-footer">\
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>\
+                            <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Não</button>\
                             <button id="btnConfirmDeleteSale" type="button" class="btn btn-primary">Sim</button>\
                         </div>\
                     </div>\

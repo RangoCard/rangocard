@@ -23,8 +23,11 @@ function getPosition(userId) {
                     });
                 },
                 function (failure) {
+                    console.log(failure.code+': '+failure.message);
                 }
             );
+        } else {
+            console.log('geolocation: not allowed');
         }
     // }
 }

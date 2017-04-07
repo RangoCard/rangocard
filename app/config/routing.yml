@@ -4,3 +4,4 @@ _liip_imagine:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+    schemes:  [https]

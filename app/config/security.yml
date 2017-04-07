@@ -80,4 +80,4 @@ security:
         - { path: ^/restaurante/cadastro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usuario, roles: [ROLE_USER] }
         - { path: ^/restaurante, roles: [ROLE_RESTAURANT] }
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

@@ -5,6 +5,7 @@
     <title>{{ title }}</title>
 </head>
 <body>
+	<img src="{{asset('assets/images/logo-rangocard.png') }}" alt="Logo Rangocard" style="width:200px;display:block;margin: 0 auto 50px;" />
     <p>Você ganhou um selo na promoção {{ sale.name }}, cadastre-se em <a href="{{ url('user_register_email', {email: email, restaurant: restaurant.id, sale: sale.id}) }}">{{ url('user_register_email', {email: email, restaurant: restaurant.id, sale: sale.id}) }}</a></p>
 </body>
 </html>

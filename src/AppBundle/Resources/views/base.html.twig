@@ -30,34 +30,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/libs/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/libs/font-awesome/4.5.0/css/font-awesome.min.css') }}" />
 
-    <!-- page specific plugin styles -->
-    <!--<link rel="stylesheet" href="{{ asset('assets/css/libs/select2.min.css') }}" />-->
-    <!--<link rel="stylesheet" href="{{ asset('assets/css/libs/jquery-ui.custom.min.css') }}" />-->
-
     <!-- ace styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/libs/ace-compilado.min.css') }}" class="ace-main-stylesheet" id="main-ace-style" />
-
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="{{ asset('assets/css/libs/ace-part2.min.css') }}" class="ace-main-stylesheet" />
-    <![endif]-->
-    <!--<link rel="stylesheet" href="{{ asset('assets/css/libs/ace-skins.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/libs/ace-rtl.min.css') }}" />-->
-
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="{{ asset('assets/css/libs/ace-ie.min.css') }}" />
-    <![endif]-->
-
-    <!-- inline styles related to this page -->
-
-    <!-- ace settings handler -->
-    <!--<script src="{{ asset('assets/js/libs/ace-extra.min.js') }}"></script>-->
-
-    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-    <!--[if lte IE 8]>
-    <script src="{{ asset('assets/js/libs/html5shiv.min.js') }}"></script>
-    <script src="{{ asset('assets/js/libs/respond.min.js') }}"></script>
-    <![endif]-->
 
     {% block customstylesheets %}
     {% endblock %}
@@ -93,15 +67,7 @@
     if('ontouchstart' in document.documentElement) document.write("<script src='{{ asset('assets/js/libs/jquery.mobile.custom.min.js') }}'>"+"<"+"/script>");
 </script>
 <script type="text/javascript" src="{{ asset('assets/js/libs/bootstrap.min.js') }}"></script>
-<!--[if lte IE 8]>
-<script src="{{ asset('assets/js/libs/excanvas.min.js') }}"></script>
-<![endif]-->
-<!--<script src="{{ asset('assets/js/libs/jquery-ui.custom.min.js') }}"></script>
-<script src="{{ asset('assets/js/libs/jquery.ui.touch-punch.min.js') }}"></script>-->
-<!--<script src="{{ asset('assets/js/libs/jquery.gritter.min.js') }}"></script>-->
-<!--<script src="{{ asset('assets/js/libs/jquery.flot.min.js') }}"></script>
-<script src="{{ asset('assets/js/libs/jquery.flot.resize.min.js') }}"></script>-->
-<!--<script src="{{ asset('assets/js/libs/select2.min.js') }}"></script>-->
+
 <script src="{{ asset('assets/js/libs/holder.min.js') }}"></script>
 <script src="{{ asset('assets/js/libs/bootstrap-editable.min.js') }}"></script>
 <script src="{{ asset('assets/js/libs/jquery.raty.min.js') }}"></script>

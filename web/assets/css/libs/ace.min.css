@@ -734,6 +734,9 @@ input {
     .info-rest .search-title a{
         font-size:17px;
     }
+    .caption-rest p{
+        font-size:14px;
+    }
 }
 @media only screen and (max-width:315px){
     .user-noti {

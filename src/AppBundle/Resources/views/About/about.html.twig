@@ -1,4 +1,51 @@
 {% extends '@App/base.html.twig' %}
 
 {% block content %}
+	<div class="bg-topo-home">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="button" class="navbar-toggle menu-toggler pull-right" id="menu-toggler-index" data-target="#drop-opc-index">
+                        <span class="sr-only">Toggle sidebar</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+					<a href ="#"><img class="logo-rango pull-left" src="{{asset('assets/images/logo-rangocard.png') }}" alt="Logo Rangocard" /></a>
+                    <div id="drop-opc-index" class="navbar-buttons navbar-header pull-right responsive ace-save-state compact" role="navigation">
+                        <ul class="nav ace-nav nav-index">
+                            <li>
+                                <a href="#">home</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('about') }}">Sobre</a>
+                            </li>
+                            <li>
+                                <a href="#">Contato</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="bg bg-sobre">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>Sobre o RangoCard</h1>
+					<p>O RangoCard foi desenvolvido para facilitar a fidelização de clientes que frequentam estabelecimentos que adotam o uso de cartão fidelidade como forma de bonificar seus clientes.
+					</p>
+					<h3>RangoCard tem como objetivo extinguir o uso do cartão fidelidade por vários motivos:</h3>
+					<ul>
+						<li>Perda do cartão fidelidade.</li>
+						<li>Esquecimento do cartão fidelidade, desta forma não consegue pontuar.</li>
+						<li>Sistema não é confiavel.</li>
+						<li>Estabelecimentos não conhecem os seus clientes</li>
+					</ul>
+					<p>Para saber mais é simples, casdastre-se <a href="{{ path('user_home') }}">aqui</a> se você for um cliente ou cadastra-se <a href="{{ path('restaurant_home') }}">aqui</a> se for um estabelecimento e conheça como funciona o RangoCard!</p>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

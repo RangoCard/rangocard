@@ -28,7 +28,16 @@ class DefaultController extends AbstractController
      */
     public function faqAction()
     {
-        return $this->render('@App/faq.html.twig');
+        return $this->render('AppBundle::faq.html.twig');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/sobre", name="about")
+     */
+    public function aboutAction()
+    {
+        return $this->render('AppBundle:About:about.html.twig');
     }
 
     /**

@@ -71,4 +71,32 @@ $(function () {
             }
         });
     });
+    
+    $('#formForgotPassword').on('submit', function (e) {
+        e.preventDefault();
+        var form =  $(this);
+        $.post( form.attr('action'), form.serialize(), function( response ) {
+            if (response.success) {
+                var alerthtml =
+                    '<div class="alert alert-success flashbag-message" role="alert" style="z-index: 99999;">\
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\
+                        '+response.message+'\
+                    </div>';
+                $('#resetPassEmail').val('');
+                $('#forgotPasswordModal').modal('hide');
+            } else {
+                var alerthtml =
+                    '<div class="alert alert-danger flashbag-message" role="alert" style="z-index: 99999;">\
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\
+                        '+response.message+'\
+                    </div>';
+            }
+            var alertMsg = $(alerthtml).prependTo('body');
+            alertMsg.fadeIn();
+            setTimeout(function () {
+                alertMsg.fadeOut();
+                alertMsg.remove();
+            }, 3000);
+        });
+    });
 });

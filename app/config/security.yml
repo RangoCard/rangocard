@@ -27,6 +27,10 @@ security:
             security: false
 
         restaurant_area:
+            remember_me:
+                name: RESTAURANTREMEMBERME
+                secret: '%secret%'
+                lifetime: 2592000
             pattern: ^/restaurante
             provider: entity_restaurant
             anonymous:  ~
@@ -45,6 +49,10 @@ security:
                 target: login_restaurant
                 invalidate_session: false
         user_area:
+            remember_me:
+                name: USERREMEMBERME
+                secret: '%secret%'
+                lifetime: 2592000
             pattern: ^/usuario
             provider: entity_user
             anonymous:  ~

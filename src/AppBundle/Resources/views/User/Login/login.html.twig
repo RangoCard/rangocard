@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <img class="logo-rango logo-rango-login" src="{{asset('assets/images/logo-rangocard.png') }}" alt="Logo Rangocard" />
+                <a href ="{{ path('choose_user_type') }}"><img class="logo-rango logo-rango-login" src="{{asset('assets/images/logo-rangocard.png') }}" alt="Logo Rangocard" /></a>
                 <form name="formLogin" id="formLogin" class="form-login-rango col-edit-cadastro pull-left col-sm-4 col-xs-12" action="{{ path('login_user') }}" method="post">
                     <p>Faça login</p>
                     <div class="form-group col-xs-12 p0">
@@ -26,12 +26,14 @@
                             <input type="password" class="form-control" name="_password" id="password" required>
                         </div>
                     </div>
-                    <div class="form-group col-xs-12 p0">
-                        <label for="remember_me">Me Lembrar</label>
-                        <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                    <div class="form-group col-sm-6 col-xs-12 p0 form-group-lembrar">
+                        <label for="remember_me">
+                            <input type="checkbox" id="remember_me" name="_remember_me" class="ace ace-checkbox-2" checked />
+                            <span class="lbl">Lembre-me</span>
+                        </label>
                     </div>
-                    <div class="form-group col-xs-12 p0 last-form-group">
-                        <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Esqueci a senha</a>
+                    <div class="form-group col-sm-6 col-xs-12 p0 last-form-group">
+                        <a class="esqueceu-senha" href="#" data-toggle="modal" data-target="#forgotPasswordModal">Esqueci a senha</a>
                     </div>
                     <div class="form-group pull-left col-xs-12">
                         {% if error %}
@@ -120,7 +122,7 @@
                         <input type="hidden" id="resetPassType" name="type" value="user">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         <button id="btnSendPassword" type="submit" class="btn btn-primary">Enviar</button>
                     </div>
                 </form>

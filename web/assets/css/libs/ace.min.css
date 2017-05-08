@@ -75,7 +75,8 @@ input {
     margin:0 auto;
     z-index: 99999;
 }
-#btnConfirmDeleteSale {
+#btnConfirmDeleteSale,
+.btn-primary{
     border-color: #337ab7 !important;
 }
 /**** INDEX PRINCIPAL ***/
@@ -209,6 +210,33 @@ input {
     left: 0;
     background:rgba(0, 0, 0, 0.45);
     z-index:999;
+}
+.bg-sobre{
+    width: 100%;
+    float: left;
+    margin-top: 50px;
+}
+.bg-sobre h1{
+    color: #FF5D00;
+    margin-bottom: 20px;
+}
+.bg-sobre p{
+    font-size:14px;
+}
+.bg-sobre p a{
+    color: #FF5D00;
+}
+.bg-sobre p a:hover{
+    text-decoration: underline;
+}
+.bg-sobre h3{
+    color: #FF5D00;
+}
+.conteudo-sobre{
+    padding:50px;
+    background:#fff;
+    border:5px solid #ff5d00;
+    border-radius:5px;
 }
 /**** FIM INDEX PRINCIPAL ***/
 .msg-sem-promo{
@@ -517,6 +545,20 @@ input {
 .btn-login{
     width:100%;
     float:left;
+}
+.esqueceu-senha{
+    color:#FF5D00;
+    float:right;
+    margin-right:15px;
+}
+.esqueceu-senha:hover{
+    text-decoration:underline;
+}
+.form-group-lembrar label{
+    margin-left:15px;
+}
+.form-group-lembrar span{
+    color:#FF5D00;
 }
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon' !important;
@@ -7900,8 +7942,8 @@ input[type=checkbox].ace.ace-checkbox-2+.lbl::before, input[type=radio].ace.ace-
     box-shadow: none;
 }
 input[type=checkbox].ace.ace-checkbox-2:checked+.lbl::before, input[type=radio].ace.ace-checkbox-2:checked+.lbl::before {
-    background-color: #F9A021;
-    border-color: #F9A021;
+    background-color: #FF5D00;
+    border-color: #FF5D00;
     color: #FFF;
 }
 input[type=checkbox].ace.disabled+.lbl::before, input[type=checkbox].ace:disabled+.lbl::before, input[type=checkbox].ace[disabled]+.lbl::before, input[type=radio].ace.disabled+.lbl::before, input[type=radio].ace:disabled+.lbl::before, input[type=radio].ace[disabled]+.lbl::before {

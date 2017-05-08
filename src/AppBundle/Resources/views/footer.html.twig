@@ -8,7 +8,6 @@
                     {% if isUser() %}
                         <li><a href="{{ path('user_restaurants_list') }}">Restaurantes participantes</a></li>
                     {% endif %}
-                    <li><a href="{{ path('faq') }}">Faq</a></li>
                     <li><a href="{{ isRestaurant() ? path('restaurant_contact') : path('user_contact') }}">Contato</a></li>
                 </ul>
             </div>

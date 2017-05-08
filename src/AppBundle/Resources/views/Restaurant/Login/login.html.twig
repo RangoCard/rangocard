@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
          <div class="col-xs-12">
-            <img class="logo-rango logo-rango-login" src="{{asset('assets/images/logo-rangocard.png') }}" alt="Logo Rangocard" />
+            <a href ="{{ path('choose_user_type') }}"><img class="logo-rango logo-rango-login" src="{{asset('assets/images/logo-rangocard.png') }}" alt="Logo Rangocard" /></a>
             <form name="formLogin" id="formLogin" class="form-login-rango col-edit-cadastro pull-left col-sm-4 col-xs-12" action="{{ path('login_restaurant') }}" method="post">
                 <p>Faça login</p>
                 <div class="form-group col-xs-12 p0">
